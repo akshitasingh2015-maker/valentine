@@ -11,18 +11,18 @@
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 20px;
+      margin: 0;
       overflow: hidden;
     }
 
     img {
       width: 260px;
       border-radius: 20px;
-      margin-bottom: 20px;
+      margin: 20px auto;
+      display: block;
     }
 
-    h2 {
-      font-size: 26px;
-    }
+    h2 { font-size: 26px; }
 
     #timer {
       font-size: 18px;
@@ -45,77 +45,82 @@
 
     #no {
       background: lightgray;
-      position: absolute;
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
     }
   </style>
 </head>
 
 <body>
 
+  <h2>Hey software developer 😏</h2>
+  <p>I learned coding just to ask you this.<br>So yes, this is a big deal.</p>
+
   <img src="hot.png" alt="us 💖">
 
   <h2>Will you be my Valentine? 💋</h2>
-
   <div id="timer">Time left: 60 ⏳</div>
 
   <button id="yes">YES 😍</button>
   <button id="no">No 🥺</button>
 
-  <script>
-    let timeLeft = 60;
-    const timer = document.getElementById("timer");
-    const noBtn = document.getElementById("no");
-    const yesBtn = document.getElementById("yes");
+<script>
+document.addEventListener("DOMContentLoaded", () => {
 
-    const noInsults = [
-      "Nice try 😏",
-      "Bold of you to click NO again after saying no last year 👀",
-      "Error 404: Better choice not found 💀",
-      "You cannot say NO twice in the same relationship.",
-      "That button is decorative, babe.",
-      "Your logic has bugs. Please reboot 😌"
-    ];
+  let timeLeft = 60;
+  const timer = document.getElementById("timer");
+  const noBtn = document.getElementById("no");
+  const yesBtn = document.getElementById("yes");
 
-    // TIMER
-    const countdown = setInterval(() => {
-      timeLeft--;
-      timer.innerText = `Time left: ${timeLeft} ⏳`;
+  const insults = [
+    "Nice try 😏",
+    "You already said no last year. Not again 🙄",
+    "Error 404: Better choice not found 💀",
+    "NO is not an option in this relationship.",
+    "That button is decorative, babe.",
+    "Your logic has bugs. Please reboot 😌"
+  ];
 
-      if (timeLeft <= 0) {
-        clearInterval(countdown);
-        alert("Too slow 😌\nAuto-selecting YES 💖");
-        celebrate();
-      }
-    }, 1000);
+  const countdown = setInterval(() => {
+    timeLeft--;
+    timer.textContent = `Time left: ${timeLeft} ⏳`;
 
-    // NO BUTTON
-    noBtn.onclick = () => {
-      alert(noInsults[Math.floor(Math.random() * noInsults.length)]);
-      noBtn.style.left = Math.random() * 70 + "vw";
-      noBtn.style.top = Math.random() * 70 + "vh";
-    };
-
-    // YES BUTTON
-    yesBtn.onclick = celebrate;
-
-    function celebrate() {
+    if (timeLeft <= 0) {
       clearInterval(countdown);
-      document.body.innerHTML = `
-        <h1>Happy Valentine’s Day ❤️</h1>
-
-        <h3>Perks include:</h3>
-        <p>• Me 🥰</p>
-        <p>• Unlimited love 💖</p>
-        <p>• Unlimited hugs 🤗</p>
-        <p>• Lifetime emotional support 🫂</p>
-        <p>• Lifetime teddy bear (that’s me) 🧸</p>
-        <p>• Free therapist + best friend combo 🧠❤️</p>
-        <p>• Someone to annoy you forever 😌</p>
-
-        <h2>You’re stuck with me now 💋</h2>
-      `;
+      alert("Too slow 😌\nAuto-selecting YES 💖");
+      celebrate();
     }
-  </script>
+  }, 1000);
+
+  noBtn.addEventListener("click", () => {
+    alert(insults[Math.floor(Math.random() * insults.length)]);
+    noBtn.style.left = Math.random() * 70 + "vw";
+    noBtn.style.top = Math.random() * 70 + "vh";
+  });
+
+  yesBtn.addEventListener("click", celebrate);
+
+  function celebrate() {
+    clearInterval(countdown);
+    document.body.innerHTML = `
+      <h1>Happy Valentine’s Day ❤️</h1>
+
+      <h3>Perks include:</h3>
+      <p>• Me 🥰</p>
+      <p>• Unlimited love 💖</p>
+      <p>• Unlimited hugs 🤗</p>
+      <p>• Lifetime emotional support 🫂</p>
+      <p>• Lifetime teddy bear (that’s me) 🧸</p>
+      <p>• Free therapist + best friend combo 🧠❤️</p>
+      <p>• Someone to annoy you forever 😌</p>
+
+      <h2>You’re stuck with me now 💋</h2>
+    `;
+  }
+
+});
+</script>
 
 </body>
 </html>
