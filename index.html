@@ -2,53 +2,49 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+  <title>Valentine 💖</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Valentine 💗</title>
+
   <style>
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
       background: #ffd6e8;
+      font-family: Arial, sans-serif;
       text-align: center;
       padding: 20px;
-    }
-
-    h1 {
-      font-size: 28px;
-    }
-
-    p {
-      font-size: 16px;
+      overflow: hidden;
     }
 
     img {
-      width: 80%;
-      max-width: 300px;
-      border-radius: 15px;
-      margin: 20px 0;
+      width: 260px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+    }
+
+    h2 {
+      font-size: 26px;
     }
 
     #timer {
-      font-size: 20px;
-      font-weight: bold;
-      margin: 15px 0;
+      font-size: 18px;
+      margin: 10px 0;
     }
 
     button {
-      font-size: 18px;
-      padding: 12px 24px;
+      padding: 14px 24px;
+      font-size: 16px;
+      border-radius: 30px;
       border: none;
-      border-radius: 25px;
       margin: 10px;
+      cursor: pointer;
     }
 
     #yes {
-      background: #ff69b4;
+      background: hotpink;
       color: white;
     }
 
     #no {
-      background: #ddd;
+      background: lightgray;
       position: absolute;
     }
   </style>
@@ -56,72 +52,70 @@
 
 <body>
 
-  <h1>Hey, my handsome software engineer 😏</h1>
-  <p>I learned coding just to ask you this.<br>So yes, this is a big deal.</p>
-
-  <!-- PUT YOUR PHOTO FILE NAME HERE -->
-  <img src="hot.png" alt="us">
+  <img src="hot.png" alt="us 💖">
 
   <h2>Will you be my Valentine? 💋</h2>
 
   <div id="timer">Time left: 60 ⏳</div>
 
   <button id="yes">YES 😍</button>
-  <button id="no">No 🙄</button>
+  <button id="no">No 🥺</button>
 
   <script>
     let timeLeft = 60;
     const timer = document.getElementById("timer");
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
 
-    setInterval(() => {
-      if (timeLeft > 0) {
-        timeLeft--;
-        timer.innerText = "Time left: " + timeLeft + " ⏳";
-      } else {
-        setTimeout(() => {
-        alert("Too slow 😌\nAuto-selecting YES 💗");
-        celebrate();
-      }
-    }, 10000);
-
-    const insults = [
-      "Nice try.",
-      "Bold of you to press NO after saying no last year AGAIN.",
-      "Error 404: Better choice not found.",
-      "Try again, genius.",
-      "That button is decorative.",
-      "Your logic has bugs."
+    const noInsults = [
+      "Nice try 😏",
+      "Bold of you to click NO again after saying no last year 👀",
+      "Error 404: Better choice not found 💀",
+      "You cannot say NO twice in the same relationship.",
+      "That button is decorative, babe.",
+      "Your logic has bugs. Please reboot 😌"
     ];
 
-    const noBtn = document.getElementById("no");
-    noBtn.addEventListener("click", () => {
-      alert(insults[Math.floor(Math.random() * insults.length)]);
+    // TIMER
+    const countdown = setInterval(() => {
+      timeLeft--;
+      timer.innerText = `Time left: ${timeLeft} ⏳`;
+
+      if (timeLeft <= 0) {
+        clearInterval(countdown);
+        alert("Too slow 😌\nAuto-selecting YES 💖");
+        celebrate();
+      }
+    }, 1000);
+
+    // NO BUTTON
+    noBtn.onclick = () => {
+      alert(noInsults[Math.floor(Math.random() * noInsults.length)]);
       noBtn.style.left = Math.random() * 70 + "vw";
       noBtn.style.top = Math.random() * 70 + "vh";
-    });
+    };
 
-    document.getElementById("yes").addEventListener("click", celebrate);
+    // YES BUTTON
+    yesBtn.onclick = celebrate;
 
     function celebrate() {
+      clearInterval(countdown);
       document.body.innerHTML = `
-        <h1>EXCELLENT CHOICE 😌💗</h1>
-        <p>You are officially my Valentine 💘</p>
-        <p>Perks include:<br>
-        • Me 😏<br>
-        • Unlimited support<br>
-        • Unlimited love<br>
-        • endless hug supplies<br>
-        • Lifetime emotional tech support teddy</p>
-        <h2>Happy Valentine’s Day ❤️</h2>
+        <h1>Happy Valentine’s Day ❤️</h1>
+
+        <h3>Perks include:</h3>
+        <p>• Me 🥰</p>
+        <p>• Unlimited love 💖</p>
+        <p>• Unlimited hugs 🤗</p>
+        <p>• Lifetime emotional support 🫂</p>
+        <p>• Lifetime teddy bear (that’s me) 🧸</p>
+        <p>• Free therapist + best friend combo 🧠❤️</p>
+        <p>• Someone to annoy you forever 😌</p>
+
+        <h2>You’re stuck with me now 💋</h2>
       `;
     }
   </script>
 
 </body>
 </html>
-
-
-
-
-
-
